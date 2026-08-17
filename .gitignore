@@ -1,0 +1,25 @@
+# Build output
+build/
+*.obj
+*.pdb
+*.ilk
+*.exp
+*.idb
+*.tlog
+
+# Runtime log written next to the client
+RagnarokPatches.log
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+*.sdf
+*.opensdf
+*.VC.db
+*.VC.opendb
+ipch/
+
+# Note: do NOT ignore "Release/" or "*.lib" here. Git on Windows matches ignore
+# patterns case-insensitively, so "Release/" also swallows the release/ folder
+# that ships the binary, and "*.lib" would drop the bundled Detours import lib.

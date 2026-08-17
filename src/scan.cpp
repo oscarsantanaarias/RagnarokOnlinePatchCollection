@@ -31,10 +31,13 @@ void Init()
 }
 
 uintptr_t FindPattern(const uint8_t* pattern, const char* mask,
-                      uintptr_t base, uintptr_t size)
+                      uintptr_t base, size_t size)
 {
     size_t len = strlen(mask);
     if (size < len) return 0;
+
+    uintptr_t first = 0;
+    int hits = 0;
 
     for (uintptr_t i = 0; i < size - len; i++) {
         bool found = true;
@@ -44,9 +47,9 @@ uintptr_t FindPattern(const uint8_t* pattern, const char* mask,
                 break;
             }
         }
-        if (found) return base + i;
+        if (found) { if (!first) first = base + i; if (++hits > 1) return 0; }
     }
-    return 0;
+    return first;
 }
 
 uint8_t* FindBytes(uint8_t* begin, uint8_t* end, const void* needle, size_t len)

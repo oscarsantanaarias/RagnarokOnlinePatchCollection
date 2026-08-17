@@ -84,6 +84,8 @@
     <ClCompile Include="src\dllmain.cpp" />
     <ClCompile Include="src\scan.cpp" />
     <ClCompile Include="src\patches\resource_cache.cpp" />
+    <ClCompile Include="src\patches\present_latency.cpp" />
+    <ClCompile Include="src\patches\vsync_off.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\patch.h" />
@@ -100,7 +102,14 @@
   </PropertyGroup>
   <Target Name="DeployToClient" AfterTargets="Build">
     <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(DeployDir)"
-          ContinueOnError="true" />
-    <Message Importance="high" Text="deployed -&gt; $(DeployDir)$(TargetFileName)" />
+          ContinueOnError="true">
+      <Output TaskParameter="CopiedFiles" ItemName="Deployed" />
+    </Copy>
+    <!-- Say so loudly when the copy did not happen. A silent failure here means
+         the client keeps running an old build while the log looks fine. -->
+    <Message Importance="high" Condition="'@(Deployed)'!=''"
+             Text="deployed -&gt; $(DeployDir)$(TargetFileName)" />
+    <Warning Condition="'@(Deployed)'==''"
+             Text="NOT DEPLOYED - $(DeployDir)$(TargetFileName) is locked; close the client and build again" />
   </Target>
 </Project>

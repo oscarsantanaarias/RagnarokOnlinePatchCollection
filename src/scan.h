@@ -22,9 +22,11 @@ extern uint8_t* text_end;
 // Fills the four pointers above from the client's PE headers.
 void Init();
 
-// Classic signature scan. '?' in the mask skips that byte.
+// Classic signature scan. '?' in the mask skips that byte. Returns 0 when the
+// pattern is absent, and also when it matches more than once - an ambiguous
+// signature is a bug, not a result.
 uintptr_t FindPattern(const uint8_t* pattern, const char* mask,
-                      uintptr_t base, uintptr_t size);
+                      uintptr_t base, size_t size);
 
 // Raw byte search, used mostly to find string literals.
 uint8_t* FindBytes(uint8_t* begin, uint8_t* end, const void* needle, size_t len);

@@ -3,7 +3,8 @@
 | File | What it is |
 |------|------------|
 | `RagnarokPatches.asi` | The patches. This is the only file you need if your client already loads `.asi` plugins. |
-| `asi-loader.rar` | Ultimate ASI Loader (`d3d9.dll` + `d3d9.ini`), for clients that do not. |
+| `d3d9.dll` + `d3d9.ini` | Ultimate ASI Loader, for clients that do not. |
+| `asi-loader.rar` | The same two files, packed together. |
 
 ## Installing
 

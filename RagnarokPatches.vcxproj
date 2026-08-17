@@ -84,8 +84,7 @@
     <ClCompile Include="src\dllmain.cpp" />
     <ClCompile Include="src\scan.cpp" />
     <ClCompile Include="src\patches\resource_cache.cpp" />
-    <ClCompile Include="src\patches\present_latency.cpp" />
-    <ClCompile Include="src\patches\vsync_off.cpp" />
+    <ClCompile Include="src\patches\fps.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\patch.h" />
